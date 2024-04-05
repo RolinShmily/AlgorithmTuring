@@ -18,8 +18,8 @@ using ll = long long;
 const int N = 1e5;
 struct Time
 {
-    int a;
-    int b;
+    int a=0;
+    int b=0;
     bool operator<(const Time &u) const
     {
         if (a == u.a)
@@ -42,14 +42,17 @@ int main()
     s[t + 2].b = s[1].b;
     for (int i = 1; i <= t; ++i)
     {
-        if (s[i + 2].a >= s[t + 2].b)
+        if(i!=t)
         {
-            count++;
-            s[t + 2].a = s[i + 2].a;
-            s[t + 2].b = s[i + 2].b;
+            if (s[i + 1].a >= s[t + 2].b)
+            {
+                count++;
+                s[t + 2].a = s[i + 1].a;
+                s[t + 2].b = s[i + 1].b;
+            }
+            else
+                continue;
         }
-        else
-            continue;
     }
     cout << count;
     return 0;
